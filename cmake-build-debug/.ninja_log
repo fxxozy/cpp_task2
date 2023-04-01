@@ -1,0 +1,18 @@
+# ninja log v5
+22	1995	7020537853253547	CMakeFiles/task2.dir/Warehouse.cpp.obj	879778b83986540
+1	2553	7018725740098988	build.ninja	b62e7db1991365c4
+4	1905	7020537852362479	CMakeFiles/task2.dir/Customer.cpp.obj	85d278cd88bebc27
+13	2089	7020537854208035	CMakeFiles/task2.dir/WholesaleCustomer.cpp.obj	327517b8fd34a947
+9	2087	7020537854187814	CMakeFiles/task2.dir/RetailCustomer.cpp.obj	ee2d9754ce81d7c7
+11	2054	7020537853857898	CMakeFiles/task2.dir/Provider.cpp.obj	598eaaf085fa5092
+7	1738	7020567307096852	CMakeFiles/task2.dir/Organization.cpp.obj	19329fd4cab08c37
+4	1847	7020567308186193	CMakeFiles/task2.dir/main.cpp.obj	b634f81761d8536
+16	1783	7020537851149270	CMakeFiles/task2.dir/Product.cpp.obj	b5f6f38e22073ce
+1847	2264	7020567312299616	task2.exe	5f4dc7c9420aa0f0
+18	1862	7020537851932398	CMakeFiles/task2.dir/Store.cpp.obj	cb6bc4e830965f97
+1783	3257	7020537865901681	CMakeFiles/task2.dir/OrganizationalUnit.cpp.obj	e1e41aa65d5d7d13
+1862	3122	7020537864559510	CMakeFiles/task2.dir/Truck.cpp.obj	f1ffecf18e37bdfe
+3	1689	7020569044916955	CMakeFiles/task2.dir/main.cpp.obj	b634f81761d8536
+1690	2206	7020569050048608	task2.exe	5f4dc7c9420aa0f0
+3	1768	7020569306645952	CMakeFiles/task2.dir/main.cpp.obj	b634f81761d8536
+1769	2169	7020569310601049	task2.exe	5f4dc7c9420aa0f0
