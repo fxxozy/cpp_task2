@@ -32,7 +32,7 @@ void WholesaleCustomer::purchaseProduct(Product* product, int quantity, Organiza
             }
             if (currentPurchases == purchasedProducts)
             {
-                cout << "There is no such product in the warehouse!" << endl;
+                cout << "There is no such quantity of goods in the warehouse!" << endl;
             }
         }
         else
