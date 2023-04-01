@@ -9,16 +9,22 @@
 
 using namespace std;
 
-void printInfoAboutOrganization(Organization* organization) {
+void printInfoAboutOrganization(Organization* organization)
+{
     cout << "Organization: " << organization->getName() << "\n\n";
-    for (auto provider: organization->getProviders()) {
+    for (auto provider: organization->getProviders())
+    {
         cout << provider->toString() << endl;
     }
     cout << endl;
-    for (auto unit: organization->getOrganizationalUnits()) {
-        if (dynamic_cast<Store *>(unit)) {
+    for (auto unit: organization->getOrganizationalUnits())
+    {
+        if (dynamic_cast<Store *>(unit))
+        {
             cout << "Store: " << unit->getName() << endl;
-        } else {
+        }
+        else
+        {
             cout << "Warehouse: " << unit->getName() << endl;
         }
         unit->printProducts();
@@ -26,11 +32,16 @@ void printInfoAboutOrganization(Organization* organization) {
     }
 }
 
-void printInfoAboutCustomers(list<Customer*>* customers) {
-    for (auto &customer: *customers) {
-        if (dynamic_cast<RetailCustomer*>(customer)) {
+void printInfoAboutCustomers(list<Customer*>* customers)
+{
+    for (auto &customer: *customers)
+    {
+        if (dynamic_cast<RetailCustomer*>(customer))
+        {
             cout << "Retail customer:" << customer->toString() << endl;
-        } else {
+        }
+        else
+        {
             cout << "Wholesale customer:" << customer->toString() << endl;
         }
         customer->printPurchasedProducts();
@@ -38,13 +49,16 @@ void printInfoAboutCustomers(list<Customer*>* customers) {
     }
 }
 
-void printExistingProducts(list<Product*>* products) {
-    for (auto product: *products) {
+void printExistingProducts(list<Product*>* products)
+{
+    for (auto product: *products)
+    {
         cout << product->toString() << endl;
     }
 }
 
-void createProduct(list<Product*>* products) {
+void createProduct(list<Product*>* products)
+{
     int sequenceNumber;
     cout << "Input the product's sequence number:";
     cin >> sequenceNumber;
@@ -53,7 +67,8 @@ void createProduct(list<Product*>* products) {
     cout << "0 - Clothes;\n1 - Food;\n2 - Medicines;\n3 - Furniture\n"
             "Select the desired product type by number from the list:";
     cin >> numberOfType;
-    switch (numberOfType) {
+    switch (numberOfType)
+    {
         case 0:
             type = Product::Clothes;
             break;
@@ -79,7 +94,8 @@ void createProduct(list<Product*>* products) {
     products->push_back(product);
 }
 
-void createCustomer(list<Customer*>* customers) {
+void createCustomer(list<Customer*>* customers)
+{
     int sequenceNumber;
     cout << "Input the customer's sequence number:";
     cin >> sequenceNumber;
@@ -90,7 +106,8 @@ void createCustomer(list<Customer*>* customers) {
     cout << "Select the type of customer (0 - Retail Customer, 1 - Wholesale customer): ";
     int numberOfType;
     cin >> numberOfType;
-    switch (numberOfType) {
+    switch (numberOfType)
+    {
         case 0:
             customer = new RetailCustomer(sequenceNumber, name);
             break;
@@ -103,7 +120,8 @@ void createCustomer(list<Customer*>* customers) {
     customers->push_back(customer);
 }
 
-void createOrganizationalUnit(Organization* organization) {
+void createOrganizationalUnit(Organization* organization)
+{
     int sequenceNumber;
     cout << "Input the building's sequence number :";
     cin >> sequenceNumber;
@@ -127,7 +145,8 @@ void createOrganizationalUnit(Organization* organization) {
     organization->addOrganizationalUnit(organizationalUnit);
 }
 
-void bringGoodsToWarehouse(Organization* organization, list<Product*>* products) {
+void bringGoodsToWarehouse(Organization* organization, list<Product*>* products)
+{
     cout << "Providers:" << endl;
     organization->printProviders();
     int sequenceNumberOfProvider;
@@ -135,23 +154,28 @@ void bringGoodsToWarehouse(Organization* organization, list<Product*>* products)
     cin >> sequenceNumberOfProvider;
     Provider* provider;
     list<Provider *> providers = organization->getProviders();
-    for (auto provider_item: providers) {
-        if (provider_item->getSequenceNumber() == sequenceNumberOfProvider) {
+    for (auto provider_item: providers)
+    {
+        if (provider_item->getSequenceNumber() == sequenceNumberOfProvider)
+        {
             provider = provider_item;
         }
     }
     cout << endl;
 
     cout << "Products that can be delivered to warehouse: \n";
-    for (auto product: *products) {
+    for (auto product: *products)
+    {
         cout << product->toString() << endl;
     }
     int sequenceNumberOfProduct;
-    cout << "Select the product by sequence number:";
+    cout << "Select the product's sequence number:";
     cin >> sequenceNumberOfProduct;
     Product* product;
-    for (auto product_item: *products) {
-        if (product_item->getSequenceNumber() == sequenceNumberOfProduct) {
+    for (auto product_item: *products)
+    {
+        if (product_item->getSequenceNumber() == sequenceNumberOfProduct)
+        {
             product = product_item;
         }
     }
@@ -162,8 +186,10 @@ void bringGoodsToWarehouse(Organization* organization, list<Product*>* products)
     cout << "Select the warehouse's number by sequence number:";
     cin >> sequenceNumberOfWarehouse;
     Warehouse *warehouse;
-    for (auto unit: organization->getOrganizationalUnits()) {
-        if (unit->getSequenceNumber() == sequenceNumberOfWarehouse) {
+    for (auto unit: organization->getOrganizationalUnits())
+    {
+        if (unit->getSequenceNumber() == sequenceNumberOfWarehouse)
+        {
             warehouse = dynamic_cast<Warehouse*>(unit);
         }
     }
@@ -174,15 +200,18 @@ void bringGoodsToWarehouse(Organization* organization, list<Product*>* products)
     provider->bringProductsToWarehouse(warehouse, product, quantity);
 }
 
-void buyProductInOrganizationalUnit(Organization* organization, list<Customer*>* customers) {
+void buyProductInOrganizationalUnit(Organization* organization, list<Customer*>* customers)
+{
     cout << "Customers:" << endl;
     printInfoAboutCustomers(customers);
     int sequenceNumberOfCustomer;
     cout << "Select the customer's sequence number who will make the purchase:";
     cin >> sequenceNumberOfCustomer;
     Customer* customer;
-    for (auto customer_item: *customers) {
-        if (customer_item->getSequenceNumber() == sequenceNumberOfCustomer) {
+    for (auto customer_item: *customers)
+    {
+        if (customer_item->getSequenceNumber() == sequenceNumberOfCustomer)
+        {
             customer = customer_item;
         }
     }
@@ -193,8 +222,10 @@ void buyProductInOrganizationalUnit(Organization* organization, list<Customer*>*
     cout << "Select building's sequence number in which the customer will make a purchase:";
     cin >> sequenceNumberOfOrganizationalUnit;
     OrganizationalUnit* organizationalUnit;
-    for (auto unit: organization->getOrganizationalUnits()) {
-        if (unit->getSequenceNumber() == sequenceNumberOfOrganizationalUnit) {
+    for (auto unit: organization->getOrganizationalUnits())
+    {
+        if (unit->getSequenceNumber() == sequenceNumberOfOrganizationalUnit)
+        {
             organizationalUnit = unit;
         }
     }
@@ -206,8 +237,10 @@ void buyProductInOrganizationalUnit(Organization* organization, list<Customer*>*
     cout << "Select the product's sequence number which will be purchased by the customer:";
     cin >> sequenceNumberOfProduct;
     Product* product;
-    for (auto product_item: organizationalUnit->getProducts()) {
-        if (product_item.first->getSequenceNumber() == sequenceNumberOfOrganizationalUnit) {
+    for (auto product_item: organizationalUnit->getProducts())
+    {
+        if (product_item.first->getSequenceNumber() == sequenceNumberOfOrganizationalUnit)
+        {
             product = product_item.first;
         }
     }
@@ -219,14 +252,17 @@ void buyProductInOrganizationalUnit(Organization* organization, list<Customer*>*
     customer->purchaseProduct(product, quantity, organizationalUnit);
 }
 
-void deliverProductInStore(Organization* organization) {
+void deliverProductInStore(Organization* organization)
+{
     organization->printListOfOrganizationalUnits();
     int sequenceNumberOfWarehouse;
     cout << "Select the warehouse's sequence number from which the delivery will be made:";
     cin >> sequenceNumberOfWarehouse;
     OrganizationalUnit* warehouse;
-    for (auto unit: organization->getOrganizationalUnits()) {
-        if (unit->getSequenceNumber() == sequenceNumberOfWarehouse) {
+    for (auto unit: organization->getOrganizationalUnits())
+    {
+        if (unit->getSequenceNumber() == sequenceNumberOfWarehouse)
+        {
             warehouse = unit;
         }
     }
@@ -237,8 +273,10 @@ void deliverProductInStore(Organization* organization) {
     cout << "Select the store's sequence number in which the delivery will be made:";
     cin >> sequenceNumberOfStore;
     OrganizationalUnit* store;
-    for (auto unit: organization->getOrganizationalUnits()) {
-        if (unit->getSequenceNumber() == sequenceNumberOfStore) {
+    for (auto unit: organization->getOrganizationalUnits())
+    {
+        if (unit->getSequenceNumber() == sequenceNumberOfStore)
+        {
             store = unit;
         }
     }
@@ -246,14 +284,17 @@ void deliverProductInStore(Organization* organization) {
     cout << endl;
 
     int sequenceNumberOfTruck;
-    for (auto truck_item: organization->getTrucks()) {
+    for (auto truck_item: organization->getTrucks())
+    {
         cout << "Truck: " << truck_item->toString();
     }
     cout << "Select the truck's sequence number that will make the delivery:";
     cin >> sequenceNumberOfTruck;
     Truck* truck;
-    for (auto truck_item: organization->getTrucks()) {
-        if (truck_item->getSequenceNumber() == sequenceNumberOfTruck) {
+    for (auto truck_item: organization->getTrucks())
+    {
+        if (truck_item->getSequenceNumber() == sequenceNumberOfTruck)
+        {
             truck = truck_item;
         }
     }
@@ -263,16 +304,20 @@ void deliverProductInStore(Organization* organization) {
     int sequenceNumberOfProduct;
     int quantity;
     map<Product*, int> products;
-    while (true) {
+    while (true)
+    {
         cout << "Select the product's sequence number which you want to deliver in the store"
                 "(0 - finish the selection of products):";
         cin >> sequenceNumberOfProduct;
-        if (sequenceNumberOfProduct == 0) {
+        if (sequenceNumberOfProduct == 0)
+        {
             break;
         }
         Product* product;
-        for (auto product_item: warehouse->getProducts()) {
-            if (product_item.first->getSequenceNumber() == sequenceNumberOfProduct) {
+        for (auto product_item: warehouse->getProducts())
+        {
+            if (product_item.first->getSequenceNumber() == sequenceNumberOfProduct)
+            {
                 product = product_item.first;
             }
         }
@@ -299,21 +344,26 @@ void printMenu() {
     cout << "10. Exit" << endl;
 }
 
-void deleteCustomers(list<Customer*>* customers) {
-    for (auto customer: *customers) {
+void deleteCustomers(list<Customer*>* customers)
+{
+    for (auto customer: *customers)
+    {
         delete customer;
     }
     delete customers;
 }
 
-void deleteProducts(list<Product*>* products) {
-    for (auto product: *products) {
+void deleteProducts(list<Product*>* products)
+{
+    for (auto product: *products)
+    {
         delete product;
     }
     delete products;
 }
 
-int main() {
+int main()
+{
     Organization* organization = new Organization("Spectrum");
 
     Provider* provider1 = new Provider(1, "Maria", "89083459671");
